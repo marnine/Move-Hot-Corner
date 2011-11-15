@@ -80,8 +80,8 @@ RightHotCorner.prototype = {
                                          reactive: true });
 
         this._corner = new Clutter.Rectangle({ name: 'right-hot-corner',
-                                               width: HOTSPOT_SIZE,
-                                               height: HOTSPOT_SIZE,
+                                               width: HOTSPOT_SIZE + 2,
+                                               height: HOTSPOT_SIZE + 2,
                                                opacity: 0,
                                                reactive: true });
         this._corner._delegate = this;
