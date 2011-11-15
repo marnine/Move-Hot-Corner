@@ -126,7 +126,7 @@ RightHotCorner.prototype = {
         ripple.scale_x = ripple.scale_y = startScale;
 
         let [x, y] = this._corner.get_transformed_position();
-        ripple.x = x;
+        ripple.x = x + HOTSPOT_SIZE;
         ripple.y = y;
 
         Tweener.addTween(ripple, { _opacity: 0,
