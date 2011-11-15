@@ -18,7 +18,7 @@ const SHOW_RIPPLE  = true;               // change to false if you do not want t
 const SHOW_LABEL   = false;              // change to true if you want Activities label
 const SHOW_ICON    = true;               // change to false if you want icon  
 const ICON_NAME    = 'fedora-logo-icon'  // 24x24 icon PNG under /usr/share/icons/... 
-const HOTSPOT_SIZE = 5;                  // change if you need/want a bigger or smaller hotspot
+const HOTSPOT_SIZE = 1;                  // change if you need/want a bigger or smaller hotspot
 
 
 function RightHotCorner() {
