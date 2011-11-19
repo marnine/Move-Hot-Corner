@@ -2,23 +2,24 @@
 //  Copyright 2011 (c) Finnbarr P. Murphy.  All rights reserved.
 //
 
-const Lang = imports.lang;
+const Lang     = imports.lang;
 const Mainloop = imports.mainloop;
-const Clutter = imports.gi.Clutter;
-const Shell = imports.gi.Shell;
-const St = imports.gi.St;
-const Main = imports.ui.main;
-const Panel = imports.ui.panel;
-const Tweener = imports.ui.tweener;
-const Gettext = imports.gettext.domain('gnome-shell');
-const _ = Gettext.gettext;
+const Clutter  = imports.gi.Clutter;
+const Shell    = imports.gi.Shell;
+const St       = imports.gi.St;
+const Main     = imports.ui.main;
+const Panel    = imports.ui.panel;
+const Tweener  = imports.ui.tweener;
+const Gettext  = imports.gettext.domain('gnome-shell');
+const _        = Gettext.gettext;
 
 const HOT_CORNER_ACTIVATION_TIMEOUT = 0.5;
-const SHOW_RIPPLE  = true;               // change to false if you do not want the ripple
-const SHOW_LABEL   = false;              // change to true if you want Activities label
-const SHOW_ICON    = true;               // change to false if you want icon  
-const ICON_NAME    = 'fedora-logo-icon'  // 24x24 icon PNG under /usr/share/icons/... 
-const HOTSPOT_SIZE = 1;                  // change if you need/want a bigger or smaller hotspot
+const SHOW_RIPPLE                   = true;               // change to false if you do not want the ripple
+const SHOW_LABEL                    = false;              // change to true if you want Activities label
+const SHOW_ICON                     = false;               // change to false if you want icon
+const ICON_NAME                     = 'fedora-logo-icon';  // 24x24 icon PNG under /usr/share/icons/...
+const HOTSPOT_SIZE                  = 1;                  // change if you need/want a bigger or smaller hotspot
+const DISABLE_LEFT_CORNER           = false;
 
 
 function RightHotCorner() {
@@ -104,7 +105,7 @@ RightHotCorner.prototype = {
         this._rhripple1 = new St.BoxLayout({ style_class: 'rhc-ripple-box', opacity: 0 });
         this._rhripple2 = new St.BoxLayout({ style_class: 'rhc-ripple-box', opacity: 0 });
         this._rhripple3 = new St.BoxLayout({ style_class: 'rhc-ripple-box', opacity: 0 });
-       
+
         Main.uiGroup.add_actor(this._rhripple1);
         Main.uiGroup.add_actor(this._rhripple2);
         Main.uiGroup.add_actor(this._rhripple3);
@@ -189,12 +190,14 @@ RightHotCorner.prototype = {
 
     disable: function() {
         Main.panel._rightBox.remove_actor(this._button);
-        Main.panel._leftBox.insert_actor(Main.panel._activities, 0);
+        if (DISABLE_LEFT_CORNER)
+          Main.panel._leftBox.insert_actor(Main.panel._activities, 0);
     },
 
     enable: function() {
        let children = Main.panel._leftBox.get_children();
-       Main.panel._leftBox.remove_actor(Main.panel._activities);
+       if (DISABLE_LEFT_CORNER)
+         Main.panel._leftBox.remove_actor(Main.panel._activities);
        Main.panel._rightBox.add_actor(this._button);
     },
 
