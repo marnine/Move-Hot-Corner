@@ -87,8 +87,9 @@ RightHotCorner.prototype = {
                                                reactive: true });
         this._corner._delegate = this;
         this.actor.add_actor(this._corner);
-        this.actor.set_position(cornerX, cornerY);
+        this._corner.set_position(this.actor.width - this._corner.width, 0);
         this.actor.set_anchor_point_from_gravity(Clutter.Gravity.NORTH_EAST);
+        this.actor.set_position(cornerX, cornerY);
 
         this.actor.connect('leave-event',
                            Lang.bind(this, this._onEnvironsRight));
